@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lvlin.location_system.dao.BeaconDao">
+    <resultMap id="beacon" type="Beacon">
+        <id property="beaconName" column="beaconName" javaType="String"/>
+        <id property="location" column="location" javaType="String"/>
+        <id property="x" column="x" javaType="double"/>
+        <id property="y" column="y" javaType="double"/>
+    </resultMap>
+
+    <select id="selectByName" parameterType="String" resultMap="beacon">
+        select * from beacon where beaconName = #{beaconName}
+    </select>
+
+    <insert id="insert" parameterType="Beacon">
+        insert into beacon values (#{beaconName},#{location},#{x},#{y})
+    </insert>
+
+    <select id="selectAll" resultMap="beacon">
+        select * from beacon;
+    </select>
+
+    <delete id="deteleByName" parameterType="String">
+        delete from beacon where beaconName = #{beaconName}
+    </delete>
+</mapper>
